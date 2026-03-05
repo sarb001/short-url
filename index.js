@@ -1,11 +1,15 @@
 import express from 'express';
-const app   = express();
+import db from './connection.js';
+import UrlRoute from './routes/urlroute.js' ;
 
-const PORT = 8000;
+const app   = express();
 app.use(express.json());
 
-app.use('/')
+const PORT = 8000;
 
+db();
+
+app.use('/api',UrlRoute);
 
 app.listen(PORT , (req,res) => {
     console.log(`PORT is running on ${PORT} ..`)

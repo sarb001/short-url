@@ -1,14 +1,9 @@
 import express from 'express';
+import { HandlercreateNewURL } from '../controllers/urlcontroller.js';
 
 const router  = express.Router();
 
-router.get('/' , async(req,res) => {
+router.get('/createurl' , HandlercreateNewURL);
 
-});
-
-
-router.post('/' , () => {
-    
-})
 
 export default router;

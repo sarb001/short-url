@@ -1,15 +1,17 @@
 import mongoose from "mongoose";
 
 
-const urlmodel = mongoose.Schema({
+const Urlmodel = mongoose.Schema({
     shorturl : {
         type : String,
         required : true,
         unique : true,
     },
-    maiurl : {
+    mainurl : {
         type  : String,
         required : true,
     },
     visitHistory : [{ timestamps : { type : Number } }]
 },{ timestamps  : true })
+
+export const Userurl = mongoose.model("Url",Urlmodel)
