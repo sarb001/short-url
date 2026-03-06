@@ -9,7 +9,8 @@ const PORT = 8000;
 
 db();
 
-app.use('/api',UrlRoute);
+app.use('/',UrlRoute);
+
 
 app.listen(PORT , (req,res) => {
     console.log(`PORT is running on ${PORT} ..`)

@@ -14,4 +14,4 @@ const Urlmodel = mongoose.Schema({
     visitHistory : [{ timestamps : { type : Number } }]
 },{ timestamps  : true })
 
-export const Userurl = mongoose.model("Url",Urlmodel)
+export const Userurl = mongoose.model("Url",Urlmodel)           // url -> automatically used with 's like - urls

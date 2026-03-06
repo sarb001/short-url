@@ -20,6 +20,26 @@ async function HandlercreateNewURL(req,res){
     return res.json({ message : "Created New URL" });
 }
 
+async function HandlerRidrectURL(req,res){
+     const paramsid = req.params.shortid;
+     console.log('param id -',paramsid);
+
+     if(!paramsid) return res.status(400).json({ message : "Params id is  required " })
+
+      const UpdateUrl = await Userurl.findOneAndUpdate({
+          shorturl : paramsid
+     },{
+        $push : { visitHistory : { timestamps : Date.now()  } },
+       },
+        {
+            upsert : true,
+        });
+
+     console.log('Updated URL -',UpdateUrl);
+      res.redirect(UpdateUrl.mainurl)
+}
+
 export  {
-    HandlercreateNewURL
+    HandlercreateNewURL,
+    HandlerRidrectURL
 }
