@@ -11,13 +11,13 @@ async function HandlercreateNewURL(req,res){
     
     if(!body.mainurl) return  res.status(400).json({ message : "MainUrl is required" });
 
-    const newurl = await Userurl.create({
+    const Response = await Userurl.create({
             shorturl : Uniqueid,
             mainurl : body.mainurl,
     });
 
-    console.log('main Resp -',newurl);
-    return res.json({ message : "Created New URL" });
+    console.log('main Resp -',Response);
+    return res.json({ id : Response.shorturl });
 }
 
 async function HandlerRidrectURL(req,res){
@@ -39,7 +39,24 @@ async function HandlerRidrectURL(req,res){
       res.redirect(UpdateUrl.mainurl)
 }
 
+// tracking total visits on  click 
+
+async function AnalyticsHandler(req,res){
+    const urlparams = req.params.shortid;
+    console.log('url params -',urlparams);
+
+    const Result = await Userurl.findOne({ shorturl : urlparams });
+    console.log("Result -",Result);
+
+   const Count =  Result.visitHistory.length;
+   console.log('count -',Count);
+
+    return res.json({ message : "Clicks  done " })
+}
+
+
 export  {
     HandlercreateNewURL,
-    HandlerRidrectURL
+    HandlerRidrectURL,
+    AnalyticsHandler
 }

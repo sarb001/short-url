@@ -1,11 +1,13 @@
 import express from 'express';
-import { HandlercreateNewURL, HandlerRidrectURL } from '../controllers/urlcontroller.js';
+import { AnalyticsHandler, HandlercreateNewURL, HandlerRidrectURL } from '../controllers/urlcontroller.js';
 
 const router  = express.Router();
 
 router.get('/createurl' , HandlercreateNewURL);
 
 router.get('/:shortid' , HandlerRidrectURL);
+
+router.get('/analytics/:shortid' ,AnalyticsHandler);
 
 
 export default router;
