@@ -18,9 +18,10 @@ app.set('views',path.resolve('./views'));
 app.use('/',UrlRoute);
 
 app.use('/homepage' , async(req,res) => {
-    // const AllUrls = await Userurl.find({});
-    // console.log("All urls -",AllUrls);
-    return res.render('home');
+    const AllUrls = await Userurl.find({});
+    console.log('urls -',AllUrls);
+    return res.render('home',{
+     urls : AllUrls});
 });
 
 app.listen(PORT , (req,res) => {
