@@ -5,7 +5,7 @@ const router  = express.Router();
 
 router.get('/createurl' , HandlercreateNewURL);
 
-router.get('/:shortid' , HandlerRidrectURL);
+router.get('/url/:shortid' , HandlerRidrectURL);
 
 router.get('/analytics/:shortid' ,AnalyticsHandler);
 
