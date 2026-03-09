@@ -3,7 +3,7 @@ import { AnalyticsHandler, HandlercreateNewURL, HandlerRidrectURL } from '../con
 
 const router  = express.Router();
 
-router.get('/createurl' , HandlercreateNewURL);
+router.post('/createurl' , HandlercreateNewURL);
 
 router.get('/url/:shortid' , HandlerRidrectURL);
 

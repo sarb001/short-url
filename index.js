@@ -7,6 +7,7 @@ import ejs from 'ejs';
 
 const app   = express();
 app.use(express.json());
+app.use(express.urlencoded({ extended : false }));
 
 const PORT = 8000;
 
@@ -19,7 +20,7 @@ app.use('/',UrlRoute);
 
 app.use('/homepage' , async(req,res) => {
     const AllUrls = await Userurl.find({});
-    console.log('urls -',AllUrls);
+    // console.log('urls -',AllUrls);
     return res.render('home',{
      urls : AllUrls});
 });

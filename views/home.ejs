@@ -6,10 +6,18 @@
     <title>Document</title>
 </head>
 <body>
-     <h2> Inside the Home ejs File broo  on the  side  </h2> 
-     <h1>  Urls are =>  </h1>
-     <% urls.forEach(url => {
-        %> <li> <%= url.shorturl  %> </li>
-     <% }) %>
+     <h1>  Urls Shortener  </h1>
+      <form method="post" action = "/createurl">
+        <p> Enter your Original URL </p>
+          <input type = "text" 
+           name="mainurl"
+          placeholder="Enter original URL"  
+          placeholder = "http://exmaple.com" 
+            />
+        <button type = "submit"> Generate </button>
+      </form>
+     <% if(locals.id) { %>
+        <p> URL Generated : http://locahost:8000/createurl/<%= id %> </p>
+     <% } %>
 </body>
 </html>

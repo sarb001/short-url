@@ -17,7 +17,10 @@ async function HandlercreateNewURL(req,res){
     });
 
     console.log('main Resp -',Response);
-    return res.json({ id : Response.shorturl });
+    return res.render("home",{
+        id : Uniqueid
+    })
+    // return res.json({ id : Response.shorturl });
 }
 
 async function HandlerRidrectURL(req,res){
