@@ -24,7 +24,6 @@ app.use('/user',UserRouter);
 
 app.use('/',StaticRouter);
 
-
 app.listen(PORT , (req,res) => {
     console.log(`PORT is running on ${PORT} ..`)
 })
