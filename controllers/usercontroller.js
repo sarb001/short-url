@@ -16,7 +16,15 @@ async function usersignup(req,res){
 }
 
 async function userlogin(req,res){
-
+     const { email , password } = req.body;
+     console.log('email | password -',{ email , password });
+     const user = await User.findOne({
+         email , password
+     })
+     if(!user) return res.render('login',{
+       error : " Invalid user | password"
+     });
+     return res.redirect('/homepage');
 }
 
 export {
