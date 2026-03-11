@@ -3,12 +3,12 @@ import express from 'express';
 import { User } from '../models/user.js';
 
 async function usersignup(req,res){
-   const Mainbody = req.body;
-   console.log('body is -',Mainbody);
+   const { username, email, password } = req.body;
+   console.log('body is -', { username, email, password });
    const newuser  = await User.create({
-      username,
+        username,
       email,
-      password
+      password 
    });
    if(!newuser) return null;
    console.log('newuser -',newuser);

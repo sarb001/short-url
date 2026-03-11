@@ -1,7 +1,9 @@
 import express from 'express';
 
 
-// specific Routing page for Rendering 
+// specific Routing page for Rendering  
+
+// like Frontend 
 
 const router  = express.Router();
 
