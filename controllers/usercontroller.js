@@ -1,6 +1,10 @@
 
 import express from 'express';
 import { User } from '../models/user.js';
+import {  v4 as uuidv4 } from 'uuid' ;
+
+const randomid = uuidv4();
+console.log('random id -',randomid);
 
 async function usersignup(req,res){
    const { username, email, password } = req.body;
@@ -24,6 +28,9 @@ async function userlogin(req,res){
      if(!user) return res.render('login',{
        error : " Invalid user | password"
      });
+     console.log('random id -',randomid);
+
+     res.cookie('uid',randomid);
      return res.redirect('/homepage');
 }
 

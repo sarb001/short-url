@@ -9,6 +9,8 @@ import { Userurl } from '../models/url.js';
 const router  = express.Router();
 
 router.get('/homepage' , async(req,res) => {
+   const user = req.cookies?.uid;
+   console.log('user added-',user);
    const AllUrls = await Userurl.find({});
       // console.log('urls -',AllUrls);
    return res.render('home',{
