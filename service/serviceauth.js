@@ -1,7 +1,12 @@
 const sessionIdToUserMap = new Map();
- 
-function setUser(id, user) {
-  sessionIdToUserMap.set(id, user);
+import jwt from 'jsonwebtoken' ; 
+
+
+ function setUser(user) {
+   console.log('secret key -',process.env.SECRET_KEY);
+   return  jwt.sign({
+      email : user?.email,
+   },secret);
 }
 
 function getUser(id) {

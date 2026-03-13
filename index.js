@@ -8,13 +8,15 @@ import UserRouter from './routes/userRoute.js';
 import StaticRouter from './routes/staticRouter.js';
 import cookieParser from 'cookie-parser';
 import { authmiddleware } from './middleware/auth.js';
-
+import dotenv from 'dotenv';
 
 const app   = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended : false }));
 app.use(cookieParser());
 
+
+dotenv.config();
 const PORT = 8000;
 
 db(); 
