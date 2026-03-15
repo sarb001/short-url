@@ -11,6 +11,7 @@ import jwt from 'jsonwebtoken' ;
 
 function getUser(token) {
   console.log('token user-',token);
+  if(!token) return null;
   return jwt.verify(token,process.env.SECRET_KEY)
 }
 
