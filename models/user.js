@@ -16,6 +16,11 @@ const userschema = mongoose.Schema({
         required : true,
         unique : true
      },
+     role : {
+       type : String,
+       required : true,
+       default : 'NORMAL'
+     }
 })
 
 export const User = mongoose.model('User',userschema);

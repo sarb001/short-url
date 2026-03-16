@@ -59,16 +59,14 @@ import { getUser } from '../service/serviceauth.js';
 
 async function authmiddleware(req,res,next){
  
-    console.log(' request heade s- -',req.headers);
-    if(!req.headers['authorization'] || !req.headers['authorization'].split('Bearer '))
-        return res.redirect('/login');
+    console.log(' request headers- -',req.headers);
+    const Cookievalue = req?.headers.cookie;
+    const  Maincookievalue =  Cookievalue.split("=")[1];
+    
+    console.log('cookiee value -',Maincookievalue);
+    if(!Maincookievalue) return res.redirect('/login');
 
-
-    const Newtoken = usertoken.split("Bearer ")[1];
-    console.log('user New token -',Newtoken);
-    if(!Newtoken)   return res.redirect('/login');      // no cookies found
-
-    const user = getUser(Newtoken);                     // checking user
+    const user = getUser(Maincookievalue);                     // checking user
     console.log('user asigned-',user);
     
     if(!user) return  res.redirect('/login');           // no user found 
@@ -76,6 +74,19 @@ async function authmiddleware(req,res,next){
     req.user = user;
     return next();
 }
+
+// apply Authorization | Restrictions
+
+function restrictUser(roles = []){
+    return function(req,res,next){
+
+        if(!req.user) return res.redirect('/login'); 
+        if(!roles.includes(req.user.role)) return res.end("UnAuthorized");
+
+        return next();
+    }
+}
+
 
 export {
      authmiddleware

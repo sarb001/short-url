@@ -15,7 +15,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended : false }));
 app.use(cookieParser());
 
-
 dotenv.config();
 const PORT = 8000;
 
@@ -24,7 +23,7 @@ db();
 app.set('view engine',"ejs");
 app.set('views',path.resolve('./views'));
 
-app.use('/url', authmiddleware ,UrlRoute);
+app.use('/url',authmiddleware,UrlRoute);
 app.use('/user',UserRouter);
 
 app.use('/',StaticRouter);
