@@ -4,6 +4,7 @@ import shortid from  'shortid';
 import { Userurl } from '../models/url.js';
 
 async function HandlercreateNewURL(req,res){
+     console.log('inside create URL-');
     const Uniqueid =  shortid.generate();
     console.log('uniqid =',Uniqueid);
     

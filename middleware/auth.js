@@ -46,9 +46,10 @@ async function authmiddleware(req,res,next){
 
     console.log('after login =-')
     const user = getUser(Newtoken);                    // checking user
+    console.log('user asigned-',user);
+    
     if(!user) return  res.redirect('/login');        // no user found 
 
-    console.log('user asigned-',user);
     req.user = user;
     next();
 }
