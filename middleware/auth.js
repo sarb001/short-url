@@ -35,23 +35,46 @@ import { getUser } from '../service/serviceauth.js';
 
 // Do it with headers => 
 
+// async function authmiddleware(req,res,next){
+ 
+//     console.log(' request heade s- -',req.headers);
+//     const usertoken = req.headers['authorization'];
+
+//     const Newtoken = usertoken.split("Bearer ")[1];
+//     console.log('user New token -',Newtoken);
+//     if(!usertoken)   return res.redirect('/login');      // no cookies found
+
+//     console.log('after login =-')
+//     const user = getUser(Newtoken);                    // checking user
+//     console.log('user asigned-',user);
+    
+//     if(!user) return  res.redirect('/login');        // no user found 
+
+//     req.user = user;
+//     next();
+// }
+
+
+// with Better way -=> 
+
 async function authmiddleware(req,res,next){
  
     console.log(' request heade s- -',req.headers);
-    const usertoken = req.headers['authorization'];
+    if(!req.headers['authorization'] || !req.headers['authorization'].split('Bearer '))
+        return res.redirect('/login');
+
 
     const Newtoken = usertoken.split("Bearer ")[1];
     console.log('user New token -',Newtoken);
-    if(!usertoken)   return res.redirect('/login');      // no cookies found
+    if(!Newtoken)   return res.redirect('/login');      // no cookies found
 
-    console.log('after login =-')
-    const user = getUser(Newtoken);                    // checking user
+    const user = getUser(Newtoken);                     // checking user
     console.log('user asigned-',user);
     
-    if(!user) return  res.redirect('/login');        // no user found 
+    if(!user) return  res.redirect('/login');           // no user found 
 
     req.user = user;
-    next();
+    return next();
 }
 
 export {

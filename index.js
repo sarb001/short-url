@@ -24,11 +24,9 @@ db();
 app.set('view engine',"ejs");
 app.set('views',path.resolve('./views'));
 
-// app.use('/', authmiddleware ,UrlRoute);
 app.use('/url', authmiddleware ,UrlRoute);
 app.use('/user',UserRouter);
 
-// app.use('/',authmiddleware,StaticRouter);
 app.use('/',StaticRouter);
 
 app.listen(PORT , (req,res) => {
