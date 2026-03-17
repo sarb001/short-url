@@ -89,5 +89,6 @@ function restrictUser(roles = []){
 
 
 export {
-     authmiddleware
+     authmiddleware,
+     restrictUser
 }
