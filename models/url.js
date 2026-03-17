@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, { Mongoose } from "mongoose";
 
 
-const Urlmodel = mongoose.Schema({
+const Urlmodel = new mongoose.Schema({
     shorturl : {
         type : String,
         required : true,
@@ -11,7 +11,11 @@ const Urlmodel = mongoose.Schema({
         type  : String,
         required : true,
     },
-    visitHistory : [{ timestamps : { type : Number } }]
+    visitHistory : [{ timestamps : { type : Number } }],
+    createdBy : {
+         type : mongoose.Schema.Types.ObjectId,
+         ref : 'User',
+    }
 },{ timestamps  : true })
 
 export const Userurl = mongoose.model("Url",Urlmodel)           // url -> automatically used with 's like - urls
