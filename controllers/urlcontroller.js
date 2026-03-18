@@ -4,10 +4,11 @@ import shortid from  'shortid';
 import { Userurl } from '../models/url.js';
 
 async function HandlercreateNewURL(req,res){
-     console.log('inside create URL-');
+     console.log('inside create URL with user ',req?.user);
+    
     const Uniqueid =  shortid.generate();
     console.log('uniqid =',Uniqueid);
-    
+
     const body = req.body;
     
     if(!body.mainurl) return  res.status(400).json({ message : "MainUrl is required" });
@@ -15,6 +16,8 @@ async function HandlercreateNewURL(req,res){
     const Response = await Userurl.create({
             shorturl : Uniqueid,
             mainurl : body.mainurl,
+            visitHistory : [],
+            createdBy :  req?.user?.id,
     });
 
     console.log('main Resp -',Response);

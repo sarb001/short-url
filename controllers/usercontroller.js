@@ -29,8 +29,6 @@ async function userlogin(req,res){
        error : " Invalid user | password"
      });
 
-   //   res.cookie('uid',randomid);
-
       const token = setUser(user);
       console.log('token -',token);
        res.cookie('token',token);
