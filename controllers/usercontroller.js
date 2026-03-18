@@ -22,8 +22,9 @@ async function userlogin(req,res){
      const { email , password } = req.body;
      console.log('email | password -',{ email , password });
      const user = await User.findOne({
-         email , password
-     })
+        email , password
+      })
+      console.log(' login user ',user);
      if(!user) return res.render('login',{
        error : " Invalid user | password"
      });
