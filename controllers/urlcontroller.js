@@ -38,7 +38,7 @@ async function AnalyticsHandler(req,res){
     console.log("Result -",Result);
 
    const Count =  Result.visitHistory.length;
-   console.log('count -',Count);
+   console.log('count total -',Count);
 
     return res.json({ message : "Clicks  done " })
 }
