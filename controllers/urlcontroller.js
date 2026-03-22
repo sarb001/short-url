@@ -40,7 +40,9 @@ async function AnalyticsHandler(req,res){
    const Count =  Result.visitHistory.length;
    console.log('count total -',Count);
 
-    return res.json({ message : "Clicks  done " })
+    return res.json({ 
+        totalclicks : Count,
+    })
 }
 
 
