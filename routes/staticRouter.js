@@ -11,7 +11,10 @@ const router  = express.Router();
 router.get('/homepage' , async(req,res) => {
    const user = req.cookies?.token;
    console.log('user added-',user);
-   const AllUrls = await Userurl.find({   });
+   const mainuser  = req.user;
+   console.log( 'mainuser -',mainuser);
+  //  get urls by specfic User 
+   const AllUrls = await Userurl.find({ });
       console.log('urls -',AllUrls);
    return res.render('home',{
        urls : AllUrls});

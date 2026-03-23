@@ -24,7 +24,6 @@ async function HandlercreateNewURL(req,res){
     return res.render("home",{
         id : Uniqueid
     })
-    // return res.json({ id : Response.shorturl });
 }
 
 

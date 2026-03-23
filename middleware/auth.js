@@ -59,12 +59,11 @@ import { getUser } from '../service/serviceauth.js';
 
 async function authmiddleware(req,res,next){
  
-    console.log(' request headers- -',req.headers);
-    const Cookievalue = req?.headers.cookie;
-    const  Maincookievalue =  Cookievalue.split("=")[1];
+    const Cookievalue = req?.headers?.cookie;
+    const  Maincookievalue =  Cookievalue?.split("=")[1];
     
     console.log('cookiee value -',Maincookievalue);
-    if(!Maincookievalue) return res.redirect('/login');
+    if(!Cookievalue) return res.redirect('/login');
 
     const user = getUser(Maincookievalue);                     // checking user
     console.log('user asigned-',user);
