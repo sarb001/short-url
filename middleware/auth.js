@@ -74,6 +74,23 @@ async function authmiddleware(req,res,next){
     return next();
 }
 
+async function checkauth(req,res,next){  
+     const Maincookievalue = req.cookies?.token;
+     console.log('user added-',Maincookievalue);
+
+     if(!Maincookievalue) return  res.redirect('/login');   
+
+     const user = getUser(Maincookievalue);         
+     console.log('user asigned-',user);
+    
+    if(!user) return  res.redirect('/login');   
+
+    req.user = user;
+    return next();
+
+}
+
+
 // apply Authorization | Restrictions
 
 function restrictUser(roles = []){
@@ -86,8 +103,8 @@ function restrictUser(roles = []){
     }
 }
 
-
 export {
      authmiddleware,
-     restrictUser
+     restrictUser,
+     checkauth
 }

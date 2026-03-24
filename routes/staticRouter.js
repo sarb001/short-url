@@ -1,5 +1,6 @@
 import express from 'express';
 import { Userurl } from '../models/url.js';
+import { checkauth } from '../middleware/auth.js';
 
 
 // specific Routing page for Rendering  
@@ -8,25 +9,16 @@ import { Userurl } from '../models/url.js';
 
 const router  = express.Router();
 
-router.get('/homepage' , async(req,res) => {
-   const user = req.cookies?.token;
-   console.log('user added-',user);
+router.get('/homepage' ,checkauth ,  async(req,res) => {
+
    const mainuser  = req.user;
    console.log( 'mainuser -',mainuser);
   //  get urls by specfic User 
-   const AllUrls = await Userurl.find({ });
+   const AllUrls = await Userurl.find({ createdBy :  mainuser?.id });
       console.log('urls -',AllUrls);
    return res.render('home',{
        urls : AllUrls});
 });
 
-router.get('/signup' , (req,res) => {
-  return  res.render("signup");
-});
-
-
-router.get('/login' , (req,res) => {
-  return  res.render("login");
-})
 
 export default router;

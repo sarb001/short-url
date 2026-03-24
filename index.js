@@ -7,7 +7,7 @@ import ejs from 'ejs';
 import UserRouter from './routes/userRoute.js';
 import StaticRouter from './routes/staticRouter.js';
 import cookieParser from 'cookie-parser';
-import { authmiddleware } from './middleware/auth.js';
+import { authmiddleware, checkauth } from './middleware/auth.js';
 import dotenv from 'dotenv';
 
 const app   = express();
@@ -26,7 +26,15 @@ app.set('views',path.resolve('./views'));
 app.use('/url',authmiddleware,UrlRoute);
 app.use('/user',UserRouter);
 
-app.use('/',authmiddleware,StaticRouter);
+app.use('/',StaticRouter);
+
+app.use('/login' , (req,res) => {
+  return  res.render("login");
+});
+
+app.use('/signup' , (req,res) => {
+  return  res.render("signup");
+})
 
 app.listen(PORT , (req,res) => {
     console.log(`PORT is running on ${PORT} ..`)
